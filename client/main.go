@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"log"
 	"net"
@@ -25,10 +26,22 @@ func main() {
 
 	defer conn.Close()
 
-	conn.Write([]byte("hello world!"))
+	for {
+		fmt.Print("> ")
 
-	incoming_msg := make([]byte, 64)
-	conn.Read(incoming_msg)
+		reader := bufio.NewReader(os.Stdin)
+		text, err := reader.ReadString('\n')
+		if err != nil {
+			log.Println(err)
+			continue
+		}
 
-	fmt.Println("incoming message:", incoming_msg)
+		conn.Write([]byte(text))
+		log.Println("sent message!")
+
+		incoming_msg := make([]byte, 64)
+		conn.Read(incoming_msg)
+
+		fmt.Println("incoming message:", incoming_msg)
+	}
 }

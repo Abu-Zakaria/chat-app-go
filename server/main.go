@@ -45,9 +45,7 @@ func main() {
 		fmt.Println("registered:", registered_users)
 
 		for _, address := range registered_users {
-			if address != remote_addr.String() {
-				sendMessage(conn, address, msg)
-			}
+			sendMessage(conn, address, msg)
 		}
 	}
 }

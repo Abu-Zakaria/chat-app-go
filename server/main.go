@@ -55,7 +55,10 @@ func main() {
 }
 
 func sendMessages(conn net.Conn, address string, messages []string) error {
-	json_string := json.Marshal(messages)
+	json_string, err := json.Marshal(messages)
+	if err != nil {
+		return err
+	}
 	length, err := conn.Write([]byte(json_string))
 	if err != nil {
 		return errors.New("sendMessage(): Something went sending message to:" + address)

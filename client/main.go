@@ -40,10 +40,12 @@ func main() {
 		conn.Write([]byte(text))
 		log.Println("sent message!")
 
-		incoming_msg := make([]byte, 1064)
+		incoming_msg := make([]byte, 100000)
 		conn.Read(incoming_msg)
 
-		var messages []string
+		fmt.Println("incoming message: ", string(incoming_msg))
+
+		var messages interface{}
 
 		err = json.Unmarshal(incoming_msg, &messages)
 		if err != nil {

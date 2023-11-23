@@ -55,7 +55,10 @@ func main() {
 }
 
 func sendMessages(conn net.Conn, address string, messages []string) error {
-	json_string, err := json.Marshal(messages)
+	data := map[string]interface{}{
+		"messages": messages,
+	}
+	json_string, err := json.Marshal(data)
 	if err != nil {
 		return err
 	}

@@ -13,7 +13,7 @@ func main() {
 	registered_users := []string{}
 	messages := []string{}
 
-	listener, err := net.Listen("tcp", "0.0.0.0:8080")
+	listener, err := net.Listen("tcp", "0.0.0.0:9090")
 	if err != nil {
 		panic("Couldn't listen to the port!")
 	}

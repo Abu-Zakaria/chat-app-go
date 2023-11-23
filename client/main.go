@@ -2,8 +2,8 @@ package main
 
 import (
 	"bufio"
+	"encoding/json"
 	"fmt"
-	"json"
 	"log"
 	"net"
 	"os"
